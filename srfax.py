@@ -198,6 +198,8 @@ class SRFax(object):
                         result[i] = str(result[i])
                     else:
                         result[i] = json.loads(json.dumps(dict(result[i])))
+            elif isinstance(result, suds.sax.text.Text):
+                result = str(result)
         except Exception as exc:
             raise SRFaxError('INVALIDRESPONSE',
                              'Error converting SOAP response',
