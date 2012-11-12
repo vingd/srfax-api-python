@@ -37,7 +37,7 @@ class SRFaxError(Exception):
         return self.cause
 
     def get_retry(self):
-        '''Get retry option'''
+        '''Get retry option (should we retry the request?)'''
         return self.retry
 
 
@@ -222,6 +222,7 @@ class SRFax(object):
     @staticmethod
     def verify_parameters(params):
         '''Simple check if number is in E.164 format'''
+
         for key in params.keys():
             if params[key] is None:
                 raise TypeError('%s not set' % (key))
@@ -229,6 +230,7 @@ class SRFax(object):
     @staticmethod
     def is_e164_number(number):
         '''Simple check if number is in E.164 format'''
+
         if isinstance(number, str) and RE_E164.match(number):
             return True
         return False
@@ -236,6 +238,7 @@ class SRFax(object):
     @staticmethod
     def is_nanp_number(number):
         '''Simple check if number is inside North American Numbering Plan'''
+
         if isinstance(number, str) and RE_NANP.match(number):
             return True
         return False
