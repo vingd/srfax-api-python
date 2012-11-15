@@ -1,3 +1,6 @@
+
+# -*- coding: utf-8 -*-
+
 '''SRFax (www.srfax.com) python library'''
 
 import re
@@ -63,7 +66,7 @@ class SRFax(object):
         fax_type = 'BROADCAST' if len(to_fax_number) > 1 else 'SINGLE'
         to_fax_number = '|'.join(to_fax_number)
 
-        if isinstance(filepath, str):
+        if isinstance(filepath, str) or isinstance(filepath, unicode):
             filepath = [filepath]
         if not isinstance(filepath, list):
             raise TypeError('filepath not properly defined')
@@ -244,19 +247,21 @@ class SRFax(object):
     def verify_fax_numbers(to_fax_number):
         '''Verify and prepare fax numbers for use at SRFax'''
 
-        if isinstance(to_fax_number, str):
+        if (isinstance(to_fax_number, str)
+                or isinstance(to_fax_number, unicode)):
             to_fax_number = [to_fax_number]
         if not isinstance(to_fax_number, list):
             raise TypeError('to_fax_number not properly defined')
 
         for i in range(len(to_fax_number)):
-            if not SRFax.is_e164_number(to_fax_number[i]):
+            number = str(to_fax_number[i])
+            if not SRFax.is_e164_number(number):
                 raise TypeError('Number not in E.164 format: %s'
-                                % (to_fax_number[i]))
-            if SRFax.is_nanp_number(to_fax_number[i]):
-                to_fax_number[i] = to_fax_number[i][1:]
+                                % (number))
+            if SRFax.is_nanp_number(number):
+                to_fax_number[i] = number[1:]
             else:
-                to_fax_number[i] = '011' + to_fax_number[i][1:]
+                to_fax_number[i] = '011' + number[1:]
 
         return to_fax_number
 
