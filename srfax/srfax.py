@@ -66,7 +66,7 @@ class SRFax(object):
         fax_type = 'BROADCAST' if len(to_fax_number) > 1 else 'SINGLE'
         to_fax_number = '|'.join(to_fax_number)
 
-        if isinstance(filepath, str) or isinstance(filepath, unicode):
+        if isinstance(filepath, basestring):
             filepath = [filepath]
         if not isinstance(filepath, list):
             raise TypeError('filepath not properly defined')
@@ -250,8 +250,7 @@ class SRFax(object):
     def verify_fax_numbers(to_fax_number):
         '''Verify and prepare fax numbers for use at SRFax'''
 
-        if (isinstance(to_fax_number, str)
-                or isinstance(to_fax_number, unicode)):
+        if isinstance(to_fax_number, basestring):
             to_fax_number = [to_fax_number]
         if not isinstance(to_fax_number, list):
             raise TypeError('to_fax_number not properly defined')
