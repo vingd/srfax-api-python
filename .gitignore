@@ -2,3 +2,8 @@
 *.pyc
 *.kpf
 .*.swp
+env/
+build/
+dist/
+srfax.egg-info/
+MANIFEST
