@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='SRFax',
-    version='0.1.0',
+    version='0.1.1',
     description='SRFax (www.srfax.com) API library',
     long_description=open('README.rst').read(),
     author='Andjelko Horvat',
