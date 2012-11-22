@@ -224,7 +224,7 @@ class SRFax(object):
 
     @staticmethod
     def verify_parameters(params):
-        '''Simple check if number is in E.164 format'''
+        '''Verify that dict values are set'''
 
         for key in params.keys():
             if params[key] is None:
