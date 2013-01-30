@@ -12,6 +12,8 @@ setup(
     url='https://github.com/vingd/srfax-api-python',
     packages=['srfax'],
     install_requires=[i.strip() for i in open('requirements.txt').readlines()],
+    license='MIT',
+    platforms=['OS Independent'],
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
