@@ -86,7 +86,10 @@ class SRFax(object):
 
         for i in range(len(filepath)):
             path = filepath[i]
-            params['sFileName_%d' % (i + 1)] = os.path.basename(path)
+            basename = os.path.basename(path)
+            if not isinstance(basename, unicode):
+                basename = basename.decode('utf-8')
+            params['sFileName_%d' % (i + 1)] = basename
             params['sFileContent_%d' % (i + 1)] = SRFax.get_file_content(path)
 
         return self.process_request('Queue_Fax', params)
