@@ -66,7 +66,7 @@ class SRFax(object):
         fax_type = 'BROADCAST' if len(to_fax_number) > 1 else 'SINGLE'
         to_fax_number = '|'.join(to_fax_number)
 
-        if isinstance(filepath, basestring):
+        if isinstance(filepath, str):
             filepath = [filepath]
         if not isinstance(filepath, list):
             raise TypeError('filepath not properly defined')
@@ -87,7 +87,7 @@ class SRFax(object):
         for i in range(len(filepath)):
             path = filepath[i]
             basename = os.path.basename(path)
-            if not isinstance(basename, unicode):
+            if not isinstance(basename, str):
                 basename = basename.decode('utf-8')
             params['sFileName_%d' % (i + 1)] = basename
             params['sFileContent_%d' % (i + 1)] = SRFax.get_file_content(path)
@@ -253,7 +253,7 @@ class SRFax(object):
     def verify_fax_numbers(to_fax_number):
         '''Verify and prepare fax numbers for use at SRFax'''
 
-        if isinstance(to_fax_number, basestring):
+        if isinstance(to_fax_number, str):
             to_fax_number = [to_fax_number]
         if not isinstance(to_fax_number, list):
             raise TypeError('to_fax_number not properly defined')
